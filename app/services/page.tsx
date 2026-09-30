@@ -297,7 +297,7 @@ export default function ServicesPage() {
                   </div>
                 </div>
                 <Link
-                  href="/#book"
+                  href="/#contact"
                   className="inline-flex items-center gap-1 rounded-full bg-stone-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-700"
                 >
                   Book now
@@ -324,9 +324,19 @@ export default function ServicesPage() {
                         {service.description}
                       </p>
                     </div>
-                    <div className="mt-4 flex items-center gap-1.5 text-xs text-stone-400">
-                      <Clock className="h-3.5 w-3.5" />
-                      {service.duration}
+
+                    <div className="mt-4 flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-1.5 text-xs text-stone-400">
+                        <Clock className="h-3.5 w-3.5" />
+                        {service.duration}
+                      </div>
+                      <Link
+                        href={`/#contact?service=${encodeURIComponent(service.name)}`}
+                        className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 transition hover:text-stone-900"
+                      >
+                        Book
+                        <ChevronRight className="h-3.5 w-3.5" />
+                      </Link>
                     </div>
                   </div>
                 </FadeIn>
@@ -344,8 +354,8 @@ export default function ServicesPage() {
               Ready to book?
             </h2>
             <p className="mt-3 text-stone-500">
-              Call us or schedule online — we can&apos;t wait to take care of
-              you.
+              Call us or send a message — we&apos;ll match you with the right
+              specialist and confirm your time.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <a

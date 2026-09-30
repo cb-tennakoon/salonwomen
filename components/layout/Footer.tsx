@@ -4,6 +4,7 @@ import { FacebookIcon, InstagramIcon } from "@/components/icons/SocialIcons";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
+  { label: "Gallery", href: "/gallery" },
   { label: "About", href: "/#about" },
   { label: "Team", href: "/#team" },
   { label: "Contact", href: "/#contact" },
