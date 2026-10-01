@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import FadeIn from "@/components/ui/FadeIn";
-
 import {
   Scissors,
   Sparkles,
@@ -12,9 +11,8 @@ import {
   Clock,
 } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Data                                                              */
-/* ------------------------------------------------------------------ */
+/* Main Setmore booking page (fallback for services without their own link) */
+const BOOKING_URL = "https://chathuranga3l1n.setmore.com/EYTxVYkBiniZrcdal0TQCjwgjE2076RP";
 
 const categories = [
   {
@@ -28,48 +26,56 @@ const categories = [
         duration: "45–60 min",
         price: "From $45",
         description: "Consultation, shampoo, cut and blow-dry style.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/EYTxVYkBiniZrcdal0TQCjwgjE2076RP/service/f35ce88a-1682-4a16-ae86-cb14b562a995", // paste Setmore "Copy link" here
       },
       {
         name: "Men's Haircut",
         duration: "30 min",
         price: "From $28",
         description: "Precision cut with shampoo and style.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/EYTxVYkBiniZrcdal0TQCjwgjE2076RP/service/d2af64bf-c8cb-40e9-966f-c6a186cd0250",
       },
       {
         name: "Children's Haircut",
         duration: "30 min",
         price: "From $22",
         description: "Gentle cuts for kids of all ages.",
+        bookingUrl: "",
       },
       {
         name: "Full Color",
         duration: "90–120 min",
         price: "From $85",
         description: "Single process permanent or demi-permanent color.",
+        bookingUrl: "",
       },
       {
         name: "Highlights / Balayage",
         duration: "120–180 min",
         price: "From $120",
         description: "Foil highlights or hand-painted balayage techniques.",
+        bookingUrl: "",
       },
       {
         name: "Keratin Treatment",
         duration: "120–150 min",
         price: "From $200",
         description: "Smoothing treatment that reduces frizz for months.",
+        bookingUrl: "",
       },
       {
         name: "Blowout / Styling",
         duration: "45 min",
         price: "From $40",
         description: "Shampoo and professional blow-dry style.",
+        bookingUrl: "",
       },
       {
         name: "Bridal / Special Occasion",
         duration: "60–90 min",
         price: "From $75",
         description: "Elegant updos and styles for weddings and events.",
+        bookingUrl: "",
       },
     ],
   },
@@ -84,42 +90,49 @@ const categories = [
         duration: "30 min",
         price: "From $25",
         description: "Shape, cuticle care, massage and polish.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/PoNBQCfxMweUoo8jwWrFCnDXQYC4pDKo/service/022c2e65-1548-435e-bbfd-b3704ead95f4",
       },
       {
         name: "Gel Manicure",
         duration: "45 min",
         price: "From $40",
         description: "Long-lasting gel polish application.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/PoNBQCfxMweUoo8jwWrFCnDXQYC4pDKo/service/a8400a84-2832-40ab-b273-9b4ac2ef2781",
       },
       {
         name: "Classic Pedicure",
         duration: "45 min",
         price: "From $40",
         description: "Soak, exfoliation, massage and polish.",
+        bookingUrl: "",
       },
       {
         name: "Gel Pedicure",
         duration: "60 min",
         price: "From $55",
         description: "Full pedicure with gel polish.",
+        bookingUrl: "",
       },
       {
         name: "Acrylic / Gel Full Set",
         duration: "75–90 min",
         price: "From $65",
         description: "Full set of enhancements with shape of choice.",
+        bookingUrl: "",
       },
       {
         name: "Fill / Rebalance",
         duration: "60 min",
         price: "From $45",
         description: "Maintenance fill for existing enhancements.",
+        bookingUrl: "",
       },
       {
         name: "Nail Art (per nail)",
         duration: "5–15 min",
         price: "From $5",
         description: "Custom designs, gems, and hand-painted details.",
+        bookingUrl: "",
       },
     ],
   },
@@ -134,42 +147,49 @@ const categories = [
         duration: "60 / 90 min",
         price: "From $80",
         description: "Classic full-body relaxation massage.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/94CX5Jpok9qdqE44PGmbsS25zy25m9IP/service/ebcdb616-185f-4786-81ea-9f9e340c8d9b",
       },
       {
         name: "Deep Tissue Massage",
         duration: "60 / 90 min",
         price: "From $95",
         description: "Focused pressure for muscle tension relief.",
+        bookingUrl: "",
       },
       {
         name: "Hot Stone Massage",
         duration: "75 min",
         price: "From $110",
         description: "Heated stones combined with massage techniques.",
+        bookingUrl: "",
       },
       {
         name: "Signature Facial",
         duration: "60 min",
         price: "From $85",
         description: "Customized facial with cleanse, extract and mask.",
+        bookingUrl: "",
       },
       {
         name: "Dermaplaning",
         duration: "45 min",
         price: "From $95",
         description: "Exfoliation that removes dead skin and peach fuzz.",
+        bookingUrl: "",
       },
       {
         name: "Microdermabrasion",
         duration: "45 min",
         price: "From $110",
         description: "Mechanical exfoliation for smoother, brighter skin.",
+        bookingUrl: "",
       },
       {
         name: "Steam Room Session",
         duration: "20 min",
         price: "From $25",
         description: "Relaxing steam with essential oils.",
+        bookingUrl: "",
       },
     ],
   },
@@ -184,56 +204,60 @@ const categories = [
         duration: "45–60 min",
         price: "From $55",
         description: "Full face makeup for day or evening.",
+        bookingUrl: "https://chathuranga3l1n.setmore.com/chathuranga/service/9f78ce16-fbc4-4931-843d-ecf3cef09dda",
       },
       {
         name: "Bridal Makeup",
         duration: "75–90 min",
         price: "From $95",
         description: "Long-lasting bridal look with trial available.",
+        bookingUrl: "",
       },
       {
         name: "Classic Lash Extensions",
         duration: "90–120 min",
         price: "From $120",
         description: "One-to-one lash application for a natural look.",
+        bookingUrl: "",
       },
       {
         name: "Hybrid / Volume Lashes",
         duration: "120–150 min",
         price: "From $160",
         description: "Fuller, more dramatic lash sets.",
+        bookingUrl: "",
       },
       {
         name: "Lash Lift + Tint",
         duration: "60 min",
         price: "From $75",
         description: "Curl and tint your natural lashes.",
+        bookingUrl: "",
       },
       {
         name: "Brow Wax / Shape",
         duration: "15–20 min",
         price: "From $18",
         description: "Clean, defined brows tailored to your face.",
+        bookingUrl: "",
       },
       {
         name: "Full Leg Wax",
         duration: "45–60 min",
         price: "From $65",
         description: "Smooth results from thigh to ankle.",
+        bookingUrl: "",
       },
       {
         name: "Spray Tan",
         duration: "30 min",
         price: "From $45",
         description: "Custom airbrush tan for a natural glow.",
+        bookingUrl: "",
       },
     ],
   },
 ];
-
-/* ------------------------------------------------------------------ */
-/*  Page                                                              */
-/* ------------------------------------------------------------------ */
 
 export default function ServicesPage() {
   return (
@@ -280,7 +304,6 @@ export default function ServicesPage() {
           className="border-b border-stone-100 py-16 sm:py-20"
         >
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            {/* Category header */}
             <FadeIn delay={catIndex * 0.05}>
               <div className="mb-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-4">
@@ -296,6 +319,8 @@ export default function ServicesPage() {
                     </p>
                   </div>
                 </div>
+
+                {/* MAIN "Book now" → Contact page */}
                 <Link
                   href="/#contact"
                   className="inline-flex items-center gap-1 rounded-full bg-stone-800 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-stone-700"
@@ -306,41 +331,49 @@ export default function ServicesPage() {
               </div>
             </FadeIn>
 
-            {/* Service list */}
             <div className="grid gap-4 sm:grid-cols-2">
-              {category.services.map((service, i) => (
-                <FadeIn key={service.name} delay={0.1 + i * 0.05}>
-                  <div className="group flex h-full flex-col justify-between rounded-xl border border-stone-100 bg-stone-50 p-5 transition hover:border-stone-200 hover:shadow-sm">
-                    <div>
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="font-medium text-stone-800">
-                          {service.name}
-                        </h3>
-                        <span className="shrink-0 text-sm font-semibold text-stone-700">
-                          {service.price}
-                        </span>
-                      </div>
-                      <p className="mt-1.5 text-sm text-stone-500">
-                        {service.description}
-                      </p>
-                    </div>
+              {category.services.map((service, i) => {
+                // SMALL "Book" → Setmore (service link or main booking URL)
+                const href = service.bookingUrl || BOOKING_URL;
 
-                    <div className="mt-4 flex items-center justify-between gap-3">
-                      <div className="flex items-center gap-1.5 text-xs text-stone-400">
-                        <Clock className="h-3.5 w-3.5" />
-                        {service.duration}
+                return (
+                  <FadeIn key={service.name} delay={0.1 + i * 0.05}>
+                    <div className="group flex h-full flex-col justify-between rounded-xl border border-stone-100 bg-stone-50 p-5 transition hover:border-stone-200 hover:shadow-sm">
+                      <div>
+                        <div className="flex items-start justify-between gap-3">
+                          <h3 className="font-medium text-stone-800">
+                            {service.name}
+                          </h3>
+                          <span className="shrink-0 text-sm font-semibold text-stone-700">
+                            {service.price}
+                          </span>
+                        </div>
+                        <p className="mt-1.5 text-sm text-stone-500">
+                          {service.description}
+                        </p>
                       </div>
-                      <Link
-                        href={`/#contact?service=${encodeURIComponent(service.name)}`}
-                        className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 transition hover:text-stone-900"
-                      >
-                        Book
-                        <ChevronRight className="h-3.5 w-3.5" />
-                      </Link>
+
+                      <div className="mt-4 flex items-center justify-between gap-3">
+                        <div className="flex items-center gap-1.5 text-xs text-stone-400">
+                          <Clock className="h-3.5 w-3.5" />
+                          {service.duration}
+                        </div>
+
+                        {/* SMALL "Book" → Setmore */}
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 transition hover:text-stone-900"
+                        >
+                          Book
+                          <ChevronRight className="h-3.5 w-3.5" />
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </FadeIn>
-              ))}
+                  </FadeIn>
+                );
+              })}
             </div>
           </div>
         </section>
